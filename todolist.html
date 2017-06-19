@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>simple vue app-todo list</title>
+  <style>
+    .submit {
+      display: block;
+      margin-top: 30px;
+    }
+    
+    .delete {
+      color: lightpink;
+      font-size: 12px;
+      margin-left: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{msg}}</p>
+    <ul>
+      <li v-for="(todo,index) in todos">{{todo.title}} <button v-on:click="deleteTodo(index)" class="delete">X</button></li>
+    </ul>
+    <input type="text" v-model="newtodo.title">
+    <button v-on:click="addTodo(newtodo)" class="submit">add todolist</button>
+  </div>
+
+
+  <script src="https://cdn.bootcss.com/vue/2.3.4/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        msg: "simple todo list",
+        todos: [{
+          id: 1,
+          title: "i want eat"
+        }],
+        newtodo: {
+          id: null,
+          title: "start add"
+        }
+      },
+      methods: {
+        addTodo(newtodo) {
+          this.todos.push(newtodo);
+          this.newtodo = {
+            id: null,
+            title: ""
+          }
+        },
+        deleteTodo(index) {
+          this.todos.splice(index, 1);
+
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>
