@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>simple vue v-show</title>
+  <style>
+    .error {
+      color: brown;
+    }
+    
+    button {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <p class="error" v-show="!msg">请输入文本</p>
+    <textarea name="" id="" cols="30" rows="10" v-model="msg"></textarea>
+    <button v-show="msg">submit</button>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.3.4/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        msg: ""
+      }
+    })
+  </script>
+
+</body>
+
+</html>
