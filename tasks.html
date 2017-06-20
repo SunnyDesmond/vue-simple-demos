@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>simple vue for</title>
+  <title>simple vue tasks</title>
   <style>
     .finish {
       text-decoration: line-through;
@@ -16,16 +16,32 @@
 <body>
 
   <div id="app">
-    <ul>
-      <li v-bind:class='list.bool?"finish":""' v-for="list in lists">{{list.listName}}</li>
-    </ul>
+    <task :tasklist="lists"></task>
+
   </div>
 
+
+
+  <template id="todo-template">
+   <ul>
+      <li @click="toggle(list)" v-bind:class='list.bool?"finish":""' v-for="list in tasklist">{{list.listName}}</li>
+    </ul>
+</template>
 
 
 
   <script src="https://cdn.bootcss.com/vue/2.3.4/vue.js"></script>
   <script>
+    Vue.component("task", {
+      template: "#todo-template",
+      props: ["tasklist"],
+      methods: {
+        toggle(list) {
+          list.bool = !list.bool
+        }
+      }
+    });
+
     new Vue({
       el: '#app',
       data: {
