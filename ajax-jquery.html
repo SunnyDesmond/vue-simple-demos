@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>simple vue ajax-jquery</title>
+
+</head>
+
+<body>
+
+  <div id="app">
+    <task></task>
+  </div>
+
+
+
+  <template id="todo-template">
+   <ul>
+      <li v-for="list in lists">{{list.listName}}</li>
+    </ul>
+</template>
+
+
+  <script src="http://libs.cdnjs.net/jquery/3.0.0/jquery.min.js"></script>
+  <script src=" https://cdn.bootcss.com/vue/2.3.4/vue.js "></script>
+  <script>
+    Vue.component("task", {
+      template: "#todo-template",
+      data() {
+        return {
+          lists: []
+        }
+
+      },
+      created() {
+        var vm = this;
+        $.ajax({
+          url: "json/data.json",
+          success: function(data) {
+            console.log(data)
+            vm.lists = data;
+          }
+        })
+      }
+    });
+
+    new Vue({
+      el: '#app',
+
+    });
+  </script>
+
+</body>
+
+</html>

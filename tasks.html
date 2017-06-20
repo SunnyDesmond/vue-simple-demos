@@ -24,6 +24,7 @@
 
   <template id="todo-template">
    <ul>
+     <h1>当前剩余的任务数<span v-show="remainTask">( {{remainTask}} )</span></h1>
       <li @click="toggle(list)" v-bind:class='list.bool?"finish":""' v-for="list in tasklist">{{list.listName}}</li>
     </ul>
 </template>
@@ -38,6 +39,13 @@
       methods: {
         toggle(list) {
           list.bool = !list.bool
+        },
+      },
+      computed: {
+        remainTask() {
+          return this.tasklist.filter(function(list) {
+            return !list.bool
+          }).length;
         }
       }
     });
@@ -47,16 +55,16 @@
       data: {
         lists: [{
           listName: "eat meat",
-          bool: true
+          bool: false
         }, {
           listName: "eat fish",
           bool: false
         }, {
           listName: "eat people",
-          bool: true
+          bool: false
         }, {
           listName: "eat rice",
-          bool: true
+          bool: false
         }]
       }
     });
