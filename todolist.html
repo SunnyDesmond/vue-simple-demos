@@ -26,7 +26,7 @@
     <ul>
       <li v-for="(todo,index) in todos">{{todo.title}} <button v-on:click="deleteTodo(index)" class="delete">X</button></li>
     </ul>
-    <input type="text" v-model="newtodo.title">
+    <input type="text" v-model="newtodo.title" :placeholder="placeholder">
     <button v-on:click="addTodo(newtodo)" class="submit">add todolist</button>
   </div>
 
@@ -37,13 +37,14 @@
       el: "#app",
       data: {
         msg: "simple todo list",
+        placeholder: "start add",
         todos: [{
           id: 1,
           title: "i want eat"
         }],
         newtodo: {
           id: null,
-          title: "start add"
+          title: ""
         }
       },
       methods: {
